@@ -11,10 +11,10 @@ from typing import Dict, List, Sequence, Tuple
 
 from ops_summary import models
 from ops_summary.filters import SummaryFilters
-from ops_summary.repositories import (
-    production_repository,
-    inspection_repository,
-    shipping_repository,
+from ops_summary.repositories.base import (
+    ProductionRepository,
+    InspectionRepository,
+    ShippingRepository,
 )
 
 
@@ -23,9 +23,9 @@ class ReconciliationService:
 
     def __init__(
         self,
-        production_repo: production_repository.ProductionRepository,
-        inspection_repo: inspection_repository.InspectionRepository,
-        shipping_repo: shipping_repository.ShippingRepository,
+        production_repo: ProductionRepository,
+        inspection_repo: InspectionRepository,
+        shipping_repo: ShippingRepository,
     ) -> None:
         self._production_repo = production_repo
         self._inspection_repo = inspection_repo
@@ -50,7 +50,9 @@ class ReconciliationService:
         self, drilldown_map: Dict[str, models.DrillDownDetail]
     ) -> List[models.LotSummaryRow]:
         """Convert drill-down data into summary rows (AC5-AC8)."""
-        raise NotImplementedError("ReconciliationService._project_summary_rows is a stub")
+        raise NotImplementedError(
+            "ReconciliationService._project_summary_rows is a stub"
+        )
 
     def _apply_filters(
         self, rows: Sequence[models.LotSummaryRow], filters: SummaryFilters

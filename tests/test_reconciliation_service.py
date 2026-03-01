@@ -1,8 +1,6 @@
 """Unit test stubs for the reconciliation service scaffold."""
 
 import pytest
-
-from ops_summary.filters import SummaryFilters
 from ops_summary.services.reconciliation_service import ReconciliationService
 
 
